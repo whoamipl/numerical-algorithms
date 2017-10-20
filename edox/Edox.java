@@ -1,9 +1,10 @@
 import java.lang.Math;
 import java.util.Scanner;
 
-
 public class Edox {
 
+	static double[] sumArr = new double[100];
+	final static int X = 1;
 	private static double fact(int x) {
 
 		double f = 1;
@@ -29,32 +30,51 @@ public class Edox {
 		return Math.exp(x);
 	}
 
-	private static double series(double x) {
+	private static void series(double x) {
 		double sum = 0.0;
 
-		for (int n = 0; n < 20; ++n) {
-			sum += (myPow(x, n) / fact(n));
+		for (int i = 0; i < 100; ++i) {
+			 sumArr[i] = (myPow(x, i) / fact(i));
+		}
+	}
+
+	// private static double reverseSeries(double x, int n) {
+	// 	double sum = 0.0;
+	// 	for (int i = n; i > 0; --i) {
+	// 		 (myPow(x, i) / fact(i));
+	// 	}
+	// 	return sum;
+	// }
+	private static double sum
+	(double[] args) {
+		double sum = 0;
+		for (int i = 0; i < args.length; ++i) {
+			sum += args[i];
 		}
 		return sum;
 	}
-
-	private static double baseOnPrev(double x) {
-
-		double prev = Math.exp(x-1);
-		return prev += prev * (x/((5)+1));
+	private static double reverseSum (double[] args) {
+		double sum = 0;
+		for (int i = args.length - 1; i > 0; --i) {
+			sum += args[i];
+		}
+		return sum;
 	}
+	// private static double baseOnPrev(double x, int n) {
+	//
+	// }
 
 	public static void main(String[] args) {
 
-		int x = Integer.parseInt(args[0]);
+		//int n = Integer.parseInt(args[0]);
 		// System.out.print(" Sposób pierwszy   ");
 		// System.out.print(" Sposób drugi      ");
 		// System.out.print(" Sposób Trzeci     ");
+		series(X);
 		System.out.println();
-		System.out.print(" "+series(x));
-		System.out.print(" "+withBulidInMethod(x));
-		System.out.print(" "+baseOnPrev(x));
-		System.out.println();
+		System.out.println("Przód: " + sum(sumArr));
+		System.out.println("Tył:   " + reverseSum(sumArr));
+
 	}
 
 }
