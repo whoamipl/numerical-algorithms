@@ -1,6 +1,7 @@
 #!/bin/bash
-for i in {0..100}
-do
-	printf %s "$i: "
-	java Edox $i 
-done
+echo "Podaj nazwę pliku, w którym chcesz zapisać wyniki: "
+read fileName
+if [ ! -f ./Edox.class ]; then
+	javac Edox.java
+fi
+java Edox >> $fileName
